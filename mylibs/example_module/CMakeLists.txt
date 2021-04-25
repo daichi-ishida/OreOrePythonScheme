@@ -9,10 +9,11 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 file(GLOB_RECURSE CXX_SOURCES *.cpp)
 list(FILTER CXX_SOURCES EXCLUDE REGEX ".*mymodule.cpp$")
 
-# target_link_libraries(${TARGET_CXXLIB_NAME} OpenGL::GL glfw)
-# target_include_directories(${TARGET_CXXLIB_NAME} PRIVATE ${COMMON_INCLUDE_DIRS})
-
 add_library(${TARGET_CXXLIB_NAME} ${CXX_SOURCES})
+
+# target_link_libraries(${TARGET_CXXLIB_NAME} OpenGL::GL glfw)
+target_include_directories(${TARGET_CXXLIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 
 target_compile_features(${TARGET_CXXLIB_NAME} PUBLIC cxx_std_14)
 target_compile_options(${TARGET_CXXLIB_NAME} PUBLIC
@@ -50,5 +51,6 @@ target_compile_definitions(${TARGET_CXXLIB_NAME} PUBLIC
 # ------------------------------------------------------------------------------
 # Bind the CXX library to a Python module
 # ------------------------------------------------------------------------------
-pybind11_add_module(${TARGET_PYMODULE_NAME} mymodule.cpp)
-target_link_libraries(${TARGET_PYMODULE_NAME} PRIVATE ${TARGET_CXXLIB_NAME})
+pybind11_add_module(${TARGET_NAME} mymodule.cpp)
+target_link_libraries(${TARGET_NAME} PRIVATE ${TARGET_CXXLIB_NAME})
+target_include_directories(${TARGET_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)

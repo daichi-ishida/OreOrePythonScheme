@@ -9,9 +9,6 @@ file(GLOB_RECURSE CXX_SOURCES *.cpp)
 target_sources(${TARGET_APP} PRIVATE ${CXX_SOURCES})
 
 target_link_libraries(${TARGET_APP} ${TARGET_CXXLIB_NAME})
-# TODO: add include dirs from src 
-target_include_directories(${TARGET_APP} PRIVATE ${COMMON_INCLUDE_DIRS})
-
 
 # ------------------------------------------------------------------------------
 # Set compiler options

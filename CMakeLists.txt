@@ -3,9 +3,8 @@ cmake_minimum_required(VERSION 3.17)
 set(PROJECT_NAME pybindtest)
 set(TARGET_APP "APP")
 
-set(TARGET_NAME "add")
+set(TARGET_NAME "example_module")
 set(TARGET_CXXLIB_NAME ${TARGET_NAME}_CXXLIB)
-set(TARGET_PYMODULE_NAME ${TARGET_NAME}_PYMODULE)
 
 project(${PROJECT_NAME})
 
@@ -37,7 +36,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 # Add subdirectory
 # ------------------------------------------------------------------------------
 add_subdirectory("extern/pybind11")
-add_subdirectory("src")
+add_subdirectory("mylibs")
 add_subdirectory("test")
 add_subdirectory("app")
 
