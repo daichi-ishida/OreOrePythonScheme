@@ -7,10 +7,24 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../build/mylibs/example
 import numpy as np
 import example_module_with_numpy
 
-x = np.arange(2*3).reshape((2, 3)).astype(np.int32)
-print("python")
-for i in range(x.shape[0]):
-    for j in range(x.shape[1]):
-        print("x[{}, {}] = {}".format(i, j, x[i, j]))
+size = 5
+a = np.arange(size)
+b = np.random.randint(0, 10, size)
 
-example_module_with_numpy.print_array(x)
+print("check print_array_1d")
+print("python")
+for i in range(a.shape[0]):
+    print("x[{}] = {}".format(i, a[i]))
+
+print("C++")
+example_module_with_numpy.print_array_1d(a)
+
+print("")
+
+print("check add_arrays_1d")
+print("numpy add")
+c1 = np.add(a, b)
+example_module_with_numpy.print_array_1d(c1)
+print("C++ add")
+c2 = example_module_with_numpy.add_arrays_1d(a, b)
+example_module_with_numpy.print_array_1d(c2)
