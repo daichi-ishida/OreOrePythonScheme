@@ -2,7 +2,7 @@
 #include "add_arrays_1d.h"
 #include <pybind11/pybind11.h>
 
-PYBIND11_MODULE(example_module_with_numpy, m)
+PYBIND11_MODULE(example_numpy, m)
 {
     m.doc() = "my test module";
     m.def("print_array_1d", &print_array_1d<int32_t>, "");

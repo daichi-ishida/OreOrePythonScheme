@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.17)
 set(PROJECT_NAME pybindtest)
 set(TARGET_APP "APP")
 
-set(TARGET_NAME "example_module_with_numpy")
+set(TARGET_NAME "example_numpy")
 set(TARGET_CXXLIB_NAME ${TARGET_NAME}_CXXLIB)
 
 project(${PROJECT_NAME})
