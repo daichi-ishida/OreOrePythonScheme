@@ -8,3 +8,6 @@ It is still in progress.
 ### External Project
 - **pybind11**: https://github.com/pybind/pybind11
 - **GoogleTest**: https://github.com/google/googletest
+
+### TODO ###
+- try thrust (runtime & driver)
