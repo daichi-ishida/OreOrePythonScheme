@@ -1,6 +1,13 @@
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # ------------------------------------------------------------------------------
+# Create PTX objects
+# ------------------------------------------------------------------------------
+find_package(CUDAToolkit 11 REQUIRED)
+
+add_subdirectory("kernels")
+
+# ------------------------------------------------------------------------------
 # Create a CXX Library
 # ------------------------------------------------------------------------------
 
@@ -11,8 +18,8 @@ list(FILTER CXX_SOURCES EXCLUDE REGEX ".*mymodule.cpp$")
 
 add_library(${TARGET_CXXLIB_NAME} ${CXX_SOURCES})
 
-target_link_libraries(${TARGET_CXXLIB_NAME} PUBLIC fmt::fmt)
-target_include_directories(${TARGET_CXXLIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(${TARGET_CXXLIB_NAME} PUBLIC CUDA::cuda_driver fmt::fmt)
+target_include_directories(${TARGET_CXXLIB_NAME} PUBLIC ${COMMON_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 target_compile_features(${TARGET_CXXLIB_NAME} PUBLIC cxx_std_14)
@@ -46,7 +53,15 @@ target_compile_definitions(${TARGET_CXXLIB_NAME} PUBLIC
     $<$<NOT:$<CONFIG:Debug>>:NDEBUG>  # else
 )
 
-# add_dependencies(${TARGET_CXXLIB_NAME} ${TARGET_CXXLIB_PTX})
+add_dependencies(${TARGET_CXXLIB_NAME} ${TARGET_CXXLIB_PTX})
+
+# ------------------------------------------------------------------------------
+# Post Process (copy PTX files)
+# ------------------------------------------------------------------------------
+
+add_custom_command(TARGET ${TARGET_CXXLIB_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:${TARGET_CXXLIB_NAME}>/PTXs/
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_OBJECTS:${TARGET_CXXLIB_PTX}> $<TARGET_FILE_DIR:${TARGET_CXXLIB_NAME}>/PTXs/ COMMAND_EXPAND_LISTS)
 
 # ------------------------------------------------------------------------------
 # Bind the CXX library to a Python module
