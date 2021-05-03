@@ -6,8 +6,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 find_package(fmt CONFIG REQUIRED)
 
-file(GLOB_RECURSE CXX_SOURCES *.cpp)
-list(FILTER CXX_SOURCES EXCLUDE REGEX ".*mymodule.cpp$")
+file(GLOB_RECURSE CXX_SOURCES src/*.cpp)
 
 add_library(${TARGET_CXXLIB_NAME} ${CXX_SOURCES})
 
@@ -45,8 +44,6 @@ target_compile_definitions(${TARGET_CXXLIB_NAME} PUBLIC
     $<$<CONFIG:Debug>:DEBUG>          # Debug
     $<$<NOT:$<CONFIG:Debug>>:NDEBUG>  # else
 )
-
-# add_dependencies(${TARGET_CXXLIB_NAME} ${TARGET_CXXLIB_PTX})
 
 # ------------------------------------------------------------------------------
 # Bind the CXX library to a Python module

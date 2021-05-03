@@ -13,8 +13,7 @@ add_subdirectory("kernels")
 
 find_package(fmt CONFIG REQUIRED)
 
-file(GLOB_RECURSE CXX_SOURCES *.cpp)
-list(FILTER CXX_SOURCES EXCLUDE REGEX ".*mymodule.cpp$")
+file(GLOB_RECURSE CXX_SOURCES src/*.cpp)
 
 add_library(${TARGET_CXXLIB_NAME} ${CXX_SOURCES})
 
