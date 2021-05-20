@@ -4,7 +4,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-PYBIND11_MODULE(example_cuda, m)
+PYBIND11_MODULE(example_cuda_driver, m)
 {
     m.doc() = "my test module";
     m.def("print_array_1d", &print_array_1d<int32_t>, "");

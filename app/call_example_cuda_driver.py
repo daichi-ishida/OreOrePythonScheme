@@ -2,10 +2,10 @@ import os
 import sys
 
 # add original module to python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '../build/mylibs/example_cuda/Debug/'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../build/mylibs/example_cuda_driver/Debug/'))
 
 import numpy as np
-import example_cuda
+import example_cuda_driver # type: ignore
 
 size = 5
 a = np.arange(size)
@@ -17,7 +17,7 @@ for i in range(a.shape[0]):
     print("x[{}] = {}".format(i, a[i]))
 
 print("C++")
-example_cuda.print_array_1d(a)
+example_cuda_driver.print_array_1d(a)
 
 print("")
 
@@ -25,8 +25,8 @@ print("")
 print("check add_arrays_cuda")
 print("numpy add")
 c1 = np.add(a, b)
-example_cuda.print_array_1d(c1)
+example_cuda_driver.print_array_1d(c1)
 print("CUDA add")
-mycuda = example_cuda.MyCuda()
+mycuda = example_cuda_driver.MyCuda()
 c2 = mycuda.add_arrays_int(a, b)
-example_cuda.print_array_1d(c2)
+example_cuda_driver.print_array_1d(c2)

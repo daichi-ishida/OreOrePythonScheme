@@ -2,9 +2,9 @@
 # Configure PTX Projects
 # ------------------------------------------------------------------------------
 enable_language(CUDA)
-file(GLOB CUDA_SOURCES *.cu)
+file(GLOB _DRIVER_KERNEL_SOURCES *.cu)
 
-add_library(${TARGET_CXXLIB_PTX} OBJECT ${CUDA_SOURCES})
+add_library(${TARGET_CXXLIB_PTX} OBJECT ${_DRIVER_KERNEL_SOURCES})
 set_target_properties(${TARGET_CXXLIB_PTX} PROPERTIES CUDA_PTX_COMPILATION ON)
 target_compile_features(${TARGET_CXXLIB_PTX} PUBLIC cuda_std_14)
 # target_compile_options(${TARGET_CXXLIB_PTX} PRIVATE 

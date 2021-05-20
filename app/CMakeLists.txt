@@ -48,7 +48,7 @@ target_compile_definitions(${TARGET_APP} PUBLIC
 # ------------------------------------------------------------------------------
 # Post Process (copy PTX files)
 # ------------------------------------------------------------------------------
-if(TARGET TARGET_CXXLIB_PTX)
+if(TARGET ${TARGET_CXXLIB_PTX})
 add_custom_command(TARGET ${TARGET_APP} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:${TARGET_APP}>/PTXs/
     COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_OBJECTS:${TARGET_CXXLIB_PTX}> $<TARGET_FILE_DIR:${TARGET_APP}>/PTXs/ COMMAND_EXPAND_LISTS)
@@ -57,3 +57,5 @@ add_custom_command(TARGET ${TARGET_APP} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/PTXs/
     COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_OBJECTS:${TARGET_CXXLIB_PTX}> ${CMAKE_CURRENT_SOURCE_DIR}/PTXs/ COMMAND_EXPAND_LISTS)
 endif()
+
+# copy pyd, dll for python
