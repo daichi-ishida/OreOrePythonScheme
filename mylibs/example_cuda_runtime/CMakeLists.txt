@@ -3,8 +3,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(RUNTIME_OBJ "${TARGET_NAME}_RTOBJ")
 
 set(PROJECT_DEFINITION
-    _OPENMP 
-    _USE_MATH_DEFINES
+    # _USE_MATH_DEFINES
 )
 
 # ------------------------------------------------------------------------------

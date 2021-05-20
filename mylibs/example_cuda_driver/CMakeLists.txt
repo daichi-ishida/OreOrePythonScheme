@@ -1,8 +1,7 @@
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 set(PROJECT_DEFINITION
-    _OPENMP 
-    _USE_MATH_DEFINES
+    # _USE_MATH_DEFINES
 )
 
 # ------------------------------------------------------------------------------

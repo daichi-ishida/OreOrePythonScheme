@@ -7,7 +7,7 @@ file(GLOB _RUNTIME_KERNEL_SOURCES *.cu)
 
 add_library(${RUNTIME_OBJ} STATIC ${_RUNTIME_KERNEL_SOURCES})
 
-target_link_libraries(${RUNTIME_OBJ} PRIVATE CUDA::cudart CUDA::cublas)
+target_link_libraries(${RUNTIME_OBJ} PRIVATE CUDA::cudart)
 set_target_properties(${RUNTIME_OBJ} PROPERTIES CUDA_SEPARABLE_COMPILATION ON CUDA_RESOLVE_DEVICE_SYMBOLS ON POSITION_INDEPENDENT_CODE ON)
 target_compile_features(${RUNTIME_OBJ} PUBLIC cxx_std_14)
 target_compile_options(${RUNTIME_OBJ} PRIVATE 
