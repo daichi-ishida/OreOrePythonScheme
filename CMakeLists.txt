@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.17)
 set(PROJECT_NAME pybindtest)
 set(TARGET_APP "APP")
 
-set(TARGET_NAME "example_cuda")
+set(TARGET_NAME "example_cuda_runtime")
 set(TARGET_CXXLIB_NAME ${TARGET_NAME}_CXXLIB)
 set(TARGET_CXXLIB_PTX ${TARGET_CXXLIB_NAME}_PTX)
 
