@@ -4,6 +4,9 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
+namespace py = pybind11;
+
+
 PYBIND11_MODULE(example_cuda_runtime, m)
 {
     m.doc() = "my test module";
