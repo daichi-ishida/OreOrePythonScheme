@@ -13,7 +13,7 @@
 
 int main()
 {
-    MyCuda mycuda = MyCuda();
+    cuda_driver::MyCuda mycuda = cuda_driver::MyCuda();
     std::vector<int> a = {0, 1, 2, 3, 4};
     std::vector<int> b = {6, 3, 7, 1, 0};
 
